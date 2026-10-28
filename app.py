@@ -340,6 +340,7 @@ def priority_risk_drivers(risk_values, threshold=50.0):
     operational=[item for item in material if item[0] in OPERATIONAL_RISK_FACTORS]
     return sorted(operational or material,key=lambda item:item[1],reverse=True)
 
+@st.cache_data(max_entries=12, show_spinner=False)
 def active_score_data(df, benchmark=None, factor_scale_reference=None):
     """Apply the selected, versioned profile without altering the legacy engine."""
     if SCORE_METHOD_VERSION=='specification-weighted-v3':
@@ -347,6 +348,7 @@ def active_score_data(df, benchmark=None, factor_scale_reference=None):
                                    risk_scale_reference=factor_scale_reference)
     return score_data_legacy(df)
 
+@st.cache_data(max_entries=8, show_spinner=False)
 def build_factor_scale_reference(history, benchmark=None):
     """Collect raw factor risks from every dealer-month for column calibration."""
     if SCORE_METHOD_VERSION!='specification-weighted-v3':
