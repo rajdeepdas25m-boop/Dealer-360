@@ -1621,10 +1621,12 @@ elif data_source is not None and page not in ['File upload','Manual Dealer Score
                             x_low=min(-1.2,float(own_df['Adverse movement / review band'].min())-.2); x_high=max(1.25,float(own_df['Adverse movement / review band'].max())+.2)
                             own_fig.add_vline(x=0,line_color='#8491a4',line_width=1)
                             own_fig.add_vline(x=1,line_dash='dash',line_color='#c85b54',annotation_text='Review band',annotation_position='top right')
-                            own_fig.update_layout(height=260,margin=dict(l=5,r=10,t=28,b=8),xaxis_title='Adverse movement · multiples of review band',yaxis_title='',legend_title='',
-                                paper_bgcolor='rgba(0,0,0,0)',plot_bgcolor='rgba(0,0,0,0)',font=dict(color='#20314b'))
-                            own_fig.update_xaxes(range=[x_low,x_high],showgrid=True,gridcolor='#e5eaf1',zeroline=False)
-                            own_fig.update_yaxes(autorange='reversed')
+                            own_fig.update_layout(template='plotly_white',height=260,margin=dict(l=5,r=10,t=28,b=8),xaxis_title='Adverse movement · multiples of review band',yaxis_title='',legend_title='',
+                                paper_bgcolor='rgba(0,0,0,0)',plot_bgcolor='rgba(0,0,0,0)',font=dict(color='#20314b',size=13),
+                                legend=dict(font=dict(color='#20314b',size=12),bgcolor='rgba(255,255,255,0.92)'))
+                            own_fig.update_xaxes(range=[x_low,x_high],showgrid=True,gridcolor='#e5eaf1',zeroline=False,
+                                title_font=dict(color='#20314b'),tickfont=dict(color='#53627a'))
+                            own_fig.update_yaxes(autorange='reversed',tickfont=dict(color='#20314b',size=12))
                             st.plotly_chart(own_fig,width='stretch',config={'displayModeBar':False})
                             own_cards=st.columns(3)
                             for own_ix,own_metric in enumerate(own_rows):
